@@ -8,24 +8,31 @@ public class UIManager : MonoBehaviour {
 	private Text gameOverText;
 	private GameObject panel;
 
+	private Text scoreText;
+
+	private float timeMultiplier;
+
 	void Awake()
 	{
-		gameOverText =  transform.Find("Panel").Find("gameOver text").GetComponent<Text>();
 		panel = transform.Find("Panel").gameObject;
+		gameOverText =  panel.transform.Find("gameOver text").GetComponent<Text>();
+		scoreText	 = 	transform.Find("score text").GetComponent<Text>();
+		
 	}
 
 	// Use this for initialization
 	void Start () {
-		
+		timeMultiplier = 100.5f;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		
+		scoreText.text = ((int)(Time.time * timeMultiplier)).ToString();
 	}
 
-	public void UIGameOver() {
+	public void UIGameOver(string gameOverMessage) {
 		panel.SetActive(true);
+		gameOverText.text = gameOverMessage;
 		gameOverText.enabled = true;
 	}
 }
