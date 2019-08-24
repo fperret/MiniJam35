@@ -21,4 +21,9 @@ public class boat : MonoBehaviour {
 			transform.Translate(Vector2.down * Time.deltaTime * speed);
 		}
 	}
+
+	void OnCollisionEnter2D(Collision2D other) {
+		Debug.Log("boat collision enter");
+		GameManager.instance.gameOver();
+	}
 }
