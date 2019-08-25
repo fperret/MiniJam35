@@ -20,7 +20,7 @@ public class Shadow : MonoBehaviour {
 		if (other.gameObject.CompareTag("playerObstacle")) {
 				if (other.gameObject.GetInstanceID() == ownerInstanceID) {
 					GameObject.Destroy(gameObject);
-					other.gameObject.SetActive(false);
+		//			other.gameObject.SetActive(false);
 				}
 		}
 

@@ -37,7 +37,7 @@ public class ObstacleManager : MonoBehaviour {
 			float boatLeftmostPosX = 0.6f;
 			float boatRightmostPosX = 5.4f;
 			float xPosition = Random.Range(boat.position.x + boatLeftmostPosX, boat.position.x + boatRightmostPosX);
-			GameObject tmpValkyrie = Instantiate(valkyrie, new Vector3(xPosition, 18), transform.rotation);
+			GameObject tmpValkyrie = Instantiate(valkyrie, new Vector3(xPosition, 16), transform.rotation);
 
 
 			GameObject tmpShadow = Instantiate(shadow, new Vector3(xPosition, boat.position.y + 0.78f), transform.rotation);
@@ -45,7 +45,7 @@ public class ObstacleManager : MonoBehaviour {
 			//tmpShadow.transform.
 
 			liveVerticalObstacles.Add(tmpValkyrie);
-			yield return new WaitForSeconds(1);
+			yield return new WaitForSeconds(5);
 		}
 	}
 
@@ -64,9 +64,9 @@ public class ObstacleManager : MonoBehaviour {
 		foreach (GameObject obstacle in liveHorizontalObstacles) {
 			obstacle.transform.Translate(Vector2.left * Time.deltaTime * obstacleSpeed);
 		}
-		foreach (GameObject obstacle in liveVerticalObstacles) {
+		/*foreach (GameObject obstacle in liveVerticalObstacles) {
 			obstacle.transform.Translate(Vector2.down * Time.deltaTime * obstacleSpeed);
-		}
+		}*/
 
 		if (liveHorizontalObstacles.Count > 100) {
 			// Check if objects are outside of the camera

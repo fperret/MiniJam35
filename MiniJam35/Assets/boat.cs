@@ -23,6 +23,7 @@ public class boat : MonoBehaviour {
 	}
 
 	void OnCollisionEnter2D(Collision2D other) {
+		Debug.Log("collision boat");
 		if (other.gameObject.CompareTag("obstacle"))
 			GameManager.instance.gameOver(2);
 	}
