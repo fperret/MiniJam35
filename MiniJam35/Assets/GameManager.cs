@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour {
 
 	public CameraControl cameraControl;
 	public UIManager	UIManager;
+	public AudioSource	musicSource;
 
 	void Awake()
 	{
@@ -33,5 +34,13 @@ public class GameManager : MonoBehaviour {
 		}
 		UIManager.UIGameOver(gameOverMessage);
 		Time.timeScale = 0;
+	}
+
+	public void toggleMusic() {
+		if (!musicSource.isPlaying) {
+			musicSource.Play();
+		} else {
+			musicSource.Stop();
+		}
 	}
 }
