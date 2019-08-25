@@ -10,6 +10,7 @@ public class UIManager : MonoBehaviour {
 
 	private Text gameOverText;
 	private GameObject panel;
+	private GameObject startPanel;
 
 	private Text scoreText;
 	private Image musicImage;
@@ -22,6 +23,7 @@ public class UIManager : MonoBehaviour {
 	void Awake()
 	{
 		panel = transform.Find("Panel").gameObject;
+		startPanel = transform.Find("StartPanel").gameObject;
 		gameOverText =  panel.transform.Find("gameOver text").GetComponent<Text>();
 		scoreText	 = 	transform.Find("backgroundUI").Find("score text").GetComponent<Text>();
 		musicImage	 = transform.Find("backgroundUI").Find("Music").GetComponent<Image>();
@@ -70,5 +72,9 @@ public class UIManager : MonoBehaviour {
 			musicImage.sprite = musicOn;
 		}
 		musicActivated = !musicActivated;
+	}
+
+	public void disableStartPanel() {
+		startPanel.SetActive(false);
 	}
 }
