@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class ObstacleManager : MonoBehaviour {
 
-	public GameObject wood;
+	public GameObject rock;
 	public GameObject valkyrie;
 	public GameObject shadow;
 	public float obstacleSpeed = 1.5f;
@@ -17,13 +17,13 @@ public class ObstacleManager : MonoBehaviour {
 	private Transform boat;
 
 
-	IEnumerator spawnWood()
+	IEnumerator spawnRock()
 	{
 		while (true)
 		{
 			// Todo dynamic range related to the ship
-			GameObject tmpWood = Instantiate(wood, new Vector3(7, Random.Range(0, 10), 0), transform.rotation);
-			liveHorizontalObstacles.Add(tmpWood);
+			GameObject tmpRock = Instantiate(rock, new Vector3(boat.position.x + 36, Random.Range(0, 10), 0), transform.rotation);
+			liveHorizontalObstacles.Add(tmpRock);
 			yield return new WaitForSeconds(1);
 		}
 	}
@@ -55,7 +55,7 @@ public class ObstacleManager : MonoBehaviour {
 
 		liveHorizontalObstacles = new List<GameObject>();
 		liveVerticalObstacles = new List<GameObject>();
-		StartCoroutine(spawnWood());
+		StartCoroutine(spawnRock());
 		StartCoroutine(spawnValkyrie());
 	}
 	
@@ -64,17 +64,14 @@ public class ObstacleManager : MonoBehaviour {
 		foreach (GameObject obstacle in liveHorizontalObstacles) {
 			obstacle.transform.Translate(Vector2.left * Time.deltaTime * obstacleSpeed);
 		}
-		/*foreach (GameObject obstacle in liveVerticalObstacles) {
-			obstacle.transform.Translate(Vector2.down * Time.deltaTime * obstacleSpeed);
-		}*/
 
 		if (liveHorizontalObstacles.Count > 100) {
-			// Check if objects are outside of the camera
+			// TBD : Check if objects are outside of the camera
 			liveHorizontalObstacles.RemoveRange(0, 50);
 		}
 		if (liveVerticalObstacles.Count > 100) {
-			// Check if objects are outside of the camera
-			//liveVerticalObstacles.RemoveRange(0, 50);
+			// TBD : Check if objects are outside of the camera
+			liveVerticalObstacles.RemoveRange(0, 50);
 		}
 	}
 }
