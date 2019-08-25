@@ -22,7 +22,8 @@ public class Player : MonoBehaviour {
 		}
 	}
 
-	void OnCollisionEnter2D(Collision2D other) {
+	void OnTriggerEnter2D(Collider2D other)
+	{
 		if (other.gameObject.CompareTag("playerObstacle"))
 			GameManager.instance.gameOver(1);
 	}

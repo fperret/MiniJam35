@@ -8,7 +8,7 @@ public class ObstacleManager : MonoBehaviour {
 	public GameObject rock;
 	public GameObject valkyrie;
 	public GameObject shadow;
-	public float obstacleSpeed = 1.5f;
+	private float obstacleSpeed = 5;
 
 	private List<GameObject> liveHorizontalObstacles;
 	private List<GameObject> liveVerticalObstacles;
