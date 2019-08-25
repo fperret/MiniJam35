@@ -6,6 +6,8 @@ public class CameraControl : MonoBehaviour {
 
 	private Vector3 startingPos;
 
+	private float shakeStrength;
+
 	// Use this for initialization
 	void Start () {
 		
@@ -19,6 +21,15 @@ public class CameraControl : MonoBehaviour {
 	public void screenShake()
 	{
 		startingPos = transform.position;
+		shakeStrength = 1;
+		InvokeRepeating("startShaking", 0, 0.01f);
+		Invoke("stopShaking", 0.3f);
+	}
+
+	public void bigScreenShake()
+	{
+		startingPos = transform.position;
+		shakeStrength = 3;
 		InvokeRepeating("startShaking", 0, 0.01f);
 		Invoke("stopShaking", 0.3f);
 	}
@@ -28,10 +39,10 @@ public class CameraControl : MonoBehaviour {
 		Debug.Log("shake");
 		Vector3 newPos = transform.position;
 		if (Random.value > 0.5f) {
-			newPos.y += Random.Range(-1.0f, 1.0f) * 0.04f;
+			newPos.y += Random.Range(-1.0f, 1.0f) * 0.04f * shakeStrength;
 		}
 		else {
-			newPos.x += Random.Range(-1.0f, 1.0f) * 0.04f;
+			newPos.x += Random.Range(-1.0f, 1.0f) * 0.04f * shakeStrength;
 		}
 		transform.position = newPos;
 	}

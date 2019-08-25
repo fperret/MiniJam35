@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class boat : MonoBehaviour {
 
+	public ObstacleManager obstacleManager;
+
 	public float speed = 1.0f;
 
 	// Use this for initialization
@@ -23,8 +25,14 @@ public class boat : MonoBehaviour {
 	}
 
 	void OnCollisionEnter2D(Collision2D other) {
-		Debug.Log("collision boat");
-		if (other.gameObject.CompareTag("obstacle"))
-			GameManager.instance.gameOver(2);
+		if (other.gameObject.CompareTag("obstacle")) {
+			GameManager.instance.cameraControl.bigScreenShake();
+			obstacleManager.enabled = false;
+			Invoke("boatGameOver", 1);
+		}
+	}
+
+	private void boatGameOver() {
+		GameManager.instance.gameOver(2);
 	}
 }
