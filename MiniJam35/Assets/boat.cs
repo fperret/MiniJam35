@@ -5,7 +5,7 @@ using UnityEngine;
 public class boat : MonoBehaviour {
 
 	public ObstacleManager obstacleManager;
-
+	public BackgroundManager backgroundManager;
 	public float speed = 1.0f;
 
 	// Use this for initialization
@@ -28,6 +28,7 @@ public class boat : MonoBehaviour {
 		if (other.gameObject.CompareTag("obstacle")) {
 			GameManager.instance.cameraControl.bigScreenShake();
 			obstacleManager.enabled = false;
+			backgroundManager.enabled = false;
 			Invoke("boatGameOver", 1);
 		}
 	}

@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Player : MonoBehaviour {
 
+	public ObstacleManager obstacleManager;
+	public BackgroundManager backgroundManager;
+
 	public float speed = 1.5f;
 
 	// Use this for initialization
@@ -24,7 +27,10 @@ public class Player : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D other)
 	{
-		if (other.gameObject.CompareTag("playerObstacle"))
+		if (other.gameObject.CompareTag("playerObstacle")) {
+			obstacleManager.enabled = false;
+			backgroundManager.enabled = false;
 			GameManager.instance.gameOver(1);
+		}
 	}
 }

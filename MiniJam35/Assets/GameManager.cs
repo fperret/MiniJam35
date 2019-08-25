@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour {
 	public UIManager	UIManager;
 	public AudioSource	musicSource;
 
+	public bool gameLive;
 	void Awake()
 	{
 		instance = this;
@@ -17,7 +18,7 @@ public class GameManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		
+		gameLive = true;
 	}
 	
 	// Update is called once per frame
@@ -25,6 +26,7 @@ public class GameManager : MonoBehaviour {
 	}
 
 	public void gameOver(int loseCause) {
+		gameLive = false;
 		string gameOverMessage = "game over";
 		if (loseCause == 1) {
 			gameOverMessage = "death from above";
@@ -33,6 +35,11 @@ public class GameManager : MonoBehaviour {
 			gameOverMessage = "blub blub blub";
 		}
 		UIManager.UIGameOver(gameOverMessage);
+		Invoke("timestop", 2);
+		
+	}
+
+	public void timestop() {
 		Time.timeScale = 0;
 	}
 

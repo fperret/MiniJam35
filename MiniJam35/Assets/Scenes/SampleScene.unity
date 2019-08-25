@@ -1427,6 +1427,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0f54e45997768244adcdb2eb67abf51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  obstacleManager: {fileID: 2011495325}
+  backgroundManager: {fileID: 767958823}
   speed: 5
 --- !u!60 &567277978
 PolygonCollider2D:
@@ -2143,10 +2145,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79089dfe4d8e07844aabb666f59937fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  obstacleManager: {fileID: 2011495325}
   cameraControl: {fileID: 519420030}
   UIManager: {fileID: 434045758}
   musicSource: {fileID: 519420033}
+  gameLive: 0
 --- !u!4 &944272621
 Transform:
   m_ObjectHideFlags: 0
@@ -3353,6 +3355,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fd6c45df61055c42bf687b0cb9435f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  obstacleManager: {fileID: 2011495325}
+  backgroundManager: {fileID: 767958823}
   speed: 3
 --- !u!61 &1480573654
 BoxCollider2D:

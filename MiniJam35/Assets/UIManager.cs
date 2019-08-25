@@ -37,13 +37,29 @@ public class UIManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		scoreText.text = ((int)(Time.time * timeMultiplier)).ToString();
+		if (GameManager.instance.gameLive)
+			scoreText.text = ((int)(Time.time * timeMultiplier)).ToString();
+	}
+
+	IEnumerator darkenPanel() {
+		float color = 1;
+		while (true) {
+			Debug.Log("loop darken");
+			panel.GetComponent<Image>().color = new Color(color, color, color);
+			color -= 0.05f;
+			if (color < 0)
+				break;
+			yield return new WaitForSeconds(0.1f);
+
+		}
+
+		gameOverText.enabled = true;
 	}
 
 	public void UIGameOver(string gameOverMessage) {
 		panel.SetActive(true);
+		StartCoroutine(darkenPanel());
 		gameOverText.text = gameOverMessage;
-		gameOverText.enabled = true;
 	}
 
 	public void musicToggle() {
