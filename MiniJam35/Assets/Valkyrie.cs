@@ -29,7 +29,6 @@ public class Valkyrie : MonoBehaviour {
 
 	public void land() {
 		GameManager.instance.cameraControl.screenShake();
-		currentState = State.LANDED;
 	}
 
 	// Update is called once per frame
@@ -43,6 +42,17 @@ public class Valkyrie : MonoBehaviour {
 		if (other.CompareTag("boat")) {
 			currentState = State.LANDED;
 			animator.SetBool("landed", true);
+
+			// prepare the new scale because when we set the boat as parent we take the scale of the parent
+			// so we need to divide our own scale
+			float parentScaleX = other.transform.localScale.x;
+			float parentScaleY = other.transform.localScale.y;
+
+			Vector3 newScale = new Vector3(transform.localScale.x / parentScaleX, transform.localScale.y / parentScaleY, 1);
+
+
+			transform.parent = other.transform.Find("valkyriesParent");
+			transform.localScale = newScale;
 		}
 	}
 }

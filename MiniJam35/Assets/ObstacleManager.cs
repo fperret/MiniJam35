@@ -42,7 +42,7 @@ public class ObstacleManager : MonoBehaviour {
 
 			GameObject tmpShadow = Instantiate(shadow, new Vector3(xPosition, boat.position.y + 0.78f), transform.rotation);
 			tmpShadow.GetComponent<Shadow>().ownerInstanceID = tmpValkyrie.GetInstanceID();
-			//tmpShadow.transform.
+			tmpShadow.transform.parent = boat;
 
 			liveVerticalObstacles.Add(tmpValkyrie);
 			yield return new WaitForSeconds(5);
