@@ -22,9 +22,17 @@ public class ObstacleManager : MonoBehaviour {
 		while (true)
 		{
 			// Todo dynamic range related to the ship
-			GameObject tmpRock = Instantiate(rock, new Vector3(boat.position.x + 36, Random.Range(0, 10), 0), transform.rotation);
+
+			GameObject tmpRock;
+			Vector3 rockPos;
+			while (true) {
+				rockPos = new Vector3(boat.position.x + 36, Random.Range(0, 10), 0);
+				if (!Physics.CheckSphere(rockPos, 3))
+					break;
+			}
+			tmpRock = Instantiate(rock, rockPos, transform.rotation);
 			liveHorizontalObstacles.Add(tmpRock);
-			yield return new WaitForSeconds(1);
+			yield return new WaitForSeconds(2);
 		}
 	}
 
@@ -39,13 +47,12 @@ public class ObstacleManager : MonoBehaviour {
 			float xPosition = Random.Range(boat.position.x + boatLeftmostPosX, boat.position.x + boatRightmostPosX);
 			GameObject tmpValkyrie = Instantiate(valkyrie, new Vector3(xPosition, 16), transform.rotation);
 
-
 			GameObject tmpShadow = Instantiate(shadow, new Vector3(xPosition, boat.position.y + 0.78f), transform.rotation);
 			tmpShadow.GetComponent<Shadow>().ownerInstanceID = tmpValkyrie.GetInstanceID();
 			tmpShadow.transform.parent = boat;
 
 			liveVerticalObstacles.Add(tmpValkyrie);
-			yield return new WaitForSeconds(5);
+			yield return new WaitForSeconds(6);
 		}
 	}
 
